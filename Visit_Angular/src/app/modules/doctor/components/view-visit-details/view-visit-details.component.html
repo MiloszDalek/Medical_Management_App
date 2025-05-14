@@ -1,0 +1,69 @@
+<div *ngIf="visitData" class="card-container">
+  <div class="visit-list" *ngIf="visitData">
+    <mat-card class="visit-card">
+      <div class="visit-details">
+        <h2 class="visit-name">{{ visitData.title }}</h2>
+        <p class="visit-description">{{ visitData.description }}</p>
+
+        <mat-divider></mat-divider>
+        <div class="visit-info">
+          <div class="info-row">
+            <span class="info-label">Due Date:</span>
+            <span class="info-value">{{ visitData.dueDate | date: 'MMM d, y'}}</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Patient:</span>
+            <span class="info-value">{{ visitData.patientName }}</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Priority:</span>
+            <span class="info-value">{{ visitData.priority }}</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Status:</span>
+            <span class="info-value">{{ visitData.visitStatus }}</span>
+          </div>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+
+  <mat-card class="information-card">
+    <mat-card-content>
+      <h4>Publish Your Information</h4>
+      <div>
+        <form [formGroup]="informationForm">
+          <mat-form-field appearance="fill">
+            <mat-label>Content</mat-label>
+            <textarea matInput formControlName="content"></textarea>
+          </mat-form-field>
+          <button mat-raised-button color="primary" style="float: right;" [disabled]="!informationForm.valid"
+                  (click)="publishInformation()">Publish</button>
+        </form>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  <div style="margin-top: 10px;">
+    <h4>Informations</h4>
+    <mat-card *ngFor="let info of informations" style="margin-top: 10px;">
+      <mat-card-header>
+        <div mat-card-avatar [ngStyle]="{ 'background-color': getColorForUser(info.postedBy) }" [ngClass]="{'avatar': info.userRole === 'PATIENT', 'example-header-image': info.userRole === 'DOCTOR'}">
+          <ng-container *ngIf="info.userRole === 'PATIENT'; else doctorAvatar">
+            <span class="avatar-text">{{ getInitials(info.postedBy) }}</span>
+          </ng-container>
+          <ng-template #doctorAvatar></ng-template>
+        </div>
+        <mat-card-title>{{ info.postedBy }}</mat-card-title>
+        <mat-card-subtitle>{{ info.creationDate | date:'medium' }}</mat-card-subtitle>
+      </mat-card-header>
+      <div fxLayout="row" fxLayoutAlign="space-between center" class="info-row">
+        <mat-card-content>
+          {{ info.content }}
+        </mat-card-content>
+        <button mat-icon-button color="warn" class="delete-button" (click)="deleteInformation(info.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </mat-card>
+  </div>
+</div>

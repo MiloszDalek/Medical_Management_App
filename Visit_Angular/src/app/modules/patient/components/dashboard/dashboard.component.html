@@ -1,0 +1,43 @@
+<div class="visit-list">
+  <mat-card class="visit-card" *ngFor="let visit of listOfVisits">
+    <div class="visit-details">
+      <h2 class="visit-name">{{ visit.title }}</h2>
+      <p class="visit-description">{{ visit.description }}</p>
+
+      <mat-divider></mat-divider>
+      <div class="visit-info">
+        <div class="info-row">
+          <span class="info-label">Due Date:</span>
+          <span class="info-value">{{ visit.dueDate | date: 'MMM d, y'}}</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Patient:</span>
+          <span class="info-value">{{ visit.patientName }}</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Priority:</span>
+          <span class="info-value">{{ visit.priority }}</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Status:</span>
+          <span class="info-value">{{ visit.visitStatus }}</span>
+        </div>
+      </div>
+
+      <mat-divider></mat-divider>
+      <div class="actions">
+        <button mat-icon-button color="accent" class="view-button" routerLink="/patient/visit-details/{{visit.id}}">
+          <mat-icon>visibility</mat-icon>
+        </button>
+        <button mat-icon-button color="primary" class="update-button" [matMenuTriggerFor]="statusMenu">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <mat-menu #statusMenu="matMenu">
+          <button mat-menu-item (click)="updateStatus(visit.id, 'CONFIRMED')">CONFIRMED</button>
+          <button mat-menu-item (click)="updateStatus(visit.id, 'CANCELLED')">CANCELLED</button>
+        </mat-menu>
+      </div>
+    </div>
+  </mat-card>
+
+</div>

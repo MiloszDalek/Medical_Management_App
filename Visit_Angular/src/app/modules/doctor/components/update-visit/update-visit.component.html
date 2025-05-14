@@ -1,0 +1,63 @@
+<div class="container">
+  <h2>Update Visit</h2>
+
+  <form [formGroup]="visitForm" (ngSubmit)="updateVisit()">
+
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Title</mat-label>
+      <input matInput type="text" placeholder="Title" formControlName="title" />
+      <mat-error *ngIf="visitForm.get('title')?.hasError('required')">This Input Is
+        Required!</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Description</mat-label>
+      <textarea matInput placeholder="Description" formControlName="description"></textarea>
+      <mat-error *ngIf="visitForm.get('description')?.hasError('required')">This Input Is
+        Required!</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Due Date</mat-label>
+      <input matInput [matDatepicker]="dueDatePicker" placeholder="Choose a due date" formControlName="dueDate">
+      <mat-datepicker-toggle matSuffix [for]="dueDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #dueDatePicker></mat-datepicker>
+      <mat-error *ngIf="visitForm.get('dueDate')?.hasError('required')">This Input Is Required!</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Select the Priority</mat-label>
+      <mat-select formControlName="priority" name="Priority">
+        <mat-option *ngFor="let priority of listOfPriorities" [value]="priority">
+          {{priority}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="visitForm.get('priority')?.hasError('required')">This Input Is
+        Required!</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Select the Visit Status</mat-label>
+      <mat-select formControlName="visitStatus" name="visitStatus">
+        <mat-option *ngFor="let status of listOfVisitStatus" [value]="status">
+          {{status}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="visitForm.get('status')?.hasError('required')">This Input Is
+        Required!</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Patient</mat-label>
+      <mat-select formControlName="patientId" name="patientId">
+        <mat-option *ngFor="let patient of listOfPatients" [value]="patient.id">
+          {{patient.name}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="visitForm.get('patientId')?.hasError('required')">This Input Is
+        Required!</mat-error>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="visitForm.invalid">Update Visit</button>
+  </form>
+</div>

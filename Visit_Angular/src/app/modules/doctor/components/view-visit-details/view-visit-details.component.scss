@@ -1,0 +1,139 @@
+.visit-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+   background-color: #dedede;
+  min-height: 37vh;
+   padding: 20px;
+
+  .visit-card {
+    // width: calc(33.33% - 20px);
+    margin-bottom: 20px;
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+
+    .visit-details {
+      padding: 20px;
+
+      .visit-name {
+        font-size: 20px;
+        font-weight: bold;
+        color: #108ee9;
+        margin-bottom: 10px;
+      }
+
+      .visit-description {
+        margin-bottom: 10px;
+      }
+
+      .visit-info {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        margin-bottom: 10px;
+        margin-top: 10px;
+
+        .info-row {
+          flex: 0 0 50%;
+          display: flex;
+          align-items: center;
+          margin-bottom: 8px;
+
+          .info-label {
+            font-weight: 100;
+            //margin-right: 5px;
+            margin-left: 50px;
+            width: 100px;
+            text-align: left;
+            display: inline-block;
+          }
+
+          .info-value {
+            font-weight: bold;
+            flex-grow: 1;
+          }
+        }
+      }
+
+      .actions {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 10px;
+
+        .update-button {
+          margin-right: 10px;
+        }
+
+        .view-button {
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+}
+
+.card-container {
+  // padding: 30px;
+  max-width: 50%;
+  padding-bottom: 30px;
+  margin: 0 auto;
+  align-items: center;
+}
+
+mat-card{
+  padding: 10px;
+}
+
+.example-header-image {
+  background-image: url('/assets/images/bearded-doctor-glasses-crop.jpg');
+  background-size: cover;
+  width: 50px;
+  height: 50px;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  //background-color: #4560e1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+mat-card-content{
+  margin-top: 10px;
+}
+
+mat-card-footer{
+  margin-left: 20px;
+}
+
+.img{
+
+  object-fit: cover;
+
+}
+
+.information-card{
+  margin-top: 20px;
+}
+
+mat-form-field{
+  width: 100%;
+}
+
+.information-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.info-content {
+  flex-grow: 1;
+  margin-right: 8px;
+}
