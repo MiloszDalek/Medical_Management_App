@@ -3,7 +3,6 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {DoctorService} from "../../services/doctor.service";
-import {parseTemplate} from "@angular/compiler";
 
 @Component({
   selector: 'app-plan-visit',
@@ -15,6 +14,7 @@ export class PlanVisitComponent {
   visitForm!: FormGroup;
   listOfPatients: any = [];
   listOfPriorities: any = ["ROUTINE", "URGENT", "EMERGENCY"];
+  today: Date = new Date();
 
   constructor(
     private fb: FormBuilder,

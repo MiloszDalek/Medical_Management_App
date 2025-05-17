@@ -12,7 +12,7 @@ public interface PatientService {
 
     VisitDto updateVisit(Long visitId, String status);
 
-    VisitDto getVisitById(Long id);
+    VisitDto getVisitById(Long id, String userName);
 
     InformationDto createInformation(Long visitId, Long postedBy, String content);
 

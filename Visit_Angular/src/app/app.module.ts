@@ -9,8 +9,9 @@ import { SignupComponent } from './auth/components/signup/signup.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {DemoAngularMaterialModule} from "./DemoAngularMaterialModule";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { HomeComponent } from './pages/home/home.component';
+import {authInterceptor} from "./interceptors/auth.interceptor";
 
 @NgModule({
   declarations: [
@@ -29,7 +30,12 @@ import { HomeComponent } from './pages/home/home.component';
     HttpClientModule
   ],
   providers: [
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: authInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

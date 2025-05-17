@@ -1,6 +1,7 @@
 package pl.dmcs.controllers.patient;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -33,8 +34,8 @@ public class PatientController {
     }
 
     @GetMapping("/visit/{id}")
-    public ResponseEntity<VisitDto> getVisitById(@PathVariable Long id) {
-        return ResponseEntity.ok(patientService.getVisitById(id));
+    public ResponseEntity<VisitDto> getVisitById(@PathVariable Long id, Authentication authentication) {
+        return ResponseEntity.ok(patientService.getVisitById(id, authentication.getName()));
     }
 
     @PostMapping("/visit/information")

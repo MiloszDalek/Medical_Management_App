@@ -1,6 +1,6 @@
 <div *ngIf="!isPatientLoggedIn && !isDoctorLoggedIn">
   <mat-toolbar color="primary" class="navbar">
-    <a class="navbar-brand" (click)="logout()">Medical App</a>
+    <a class="navbar-brand" (click)="navigateToHome()">Medical App</a>
     <span class="spacer"></span>
     <button mat-button routerLink="/signup" routerLinkActive="active">Register</button>
     <button mat-button routerLink="/login" routerLinkActive="active">Login</button>
@@ -9,7 +9,7 @@
 
 <div *ngIf="isDoctorLoggedIn">
   <mat-toolbar color="primary" class="navbar">
-    <a class="navbar-brand" (click)="logout()">Medical App</a>
+    <a class="navbar-brand" (click)="navigateToHome()">Medical App</a>
     <span class="user-role">Doctor</span>
     <span class="spacer"></span>
     <button mat-button routerLink="/doctor/dashboard" routerLinkActive="active">Dashboard</button>
@@ -20,7 +20,7 @@
 
 <div *ngIf="isPatientLoggedIn">
   <mat-toolbar color="primary" class="navbar">
-    <a class="navbar-brand" (click)="logout()">Medical App</a>
+    <a class="navbar-brand" (click)="navigateToHome()">Medical App</a>
     <span class="user-role">Patient</span>
     <span class="spacer"></span>
     <button mat-button routerLink="/patient/dashboard" routerLinkActive="active">Dashboard</button>

@@ -27,4 +27,8 @@ export class AppComponent {
     StorageService.signOut();
     this.router.navigateByUrl('/home');
   }
+
+  navigateToHome() {
+    this.router.navigateByUrl('/home');
+  }
 }

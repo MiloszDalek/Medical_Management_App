@@ -2,6 +2,7 @@ package pl.dmcs.services.patient;
 
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
 import pl.dmcs.dto.InformationDto;
 import pl.dmcs.dto.VisitDto;
@@ -53,9 +54,17 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public VisitDto getVisitById(Long id) {
+    public VisitDto getVisitById(Long id, String userName) {
         Optional<Visit> optionalVisit = visitRepository.findById(id);
-        return optionalVisit.map(Visit::getVisitDto).orElse(null);
+        if (optionalVisit.isPresent()) {
+            if (optionalVisit.get().getUser().getEmail().equals(userName)) {
+                return optionalVisit.map(Visit::getVisitDto).orElse(null);
+            }
+            else {
+                throw new AccessDeniedException("Access to visit denied");
+            }
+        }
+        throw new EntityNotFoundException("Visit not found");
     }
 
     @Override

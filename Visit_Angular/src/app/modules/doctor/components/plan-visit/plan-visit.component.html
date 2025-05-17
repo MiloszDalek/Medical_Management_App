@@ -19,7 +19,7 @@
 
     <mat-form-field appearance="outline" class="form-field">
       <mat-label>Due Date</mat-label>
-      <input matInput [matDatepicker]="dueDatePicker" placeholder="Choose a due date" formControlName="dueDate">
+      <input matInput [matDatepicker]="dueDatePicker" placeholder="Choose a due date" formControlName="dueDate" [min]="today">
       <mat-datepicker-toggle matSuffix [for]="dueDatePicker"></mat-datepicker-toggle>
       <mat-datepicker #dueDatePicker></mat-datepicker>
       <mat-error *ngIf="visitForm.get('dueDate')?.hasError('required')">This Input Is Required!</mat-error>

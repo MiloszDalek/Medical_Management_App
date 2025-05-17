@@ -10,8 +10,8 @@ const routes: Routes = [
   { path:"doctor", loadChildren: () => import("./modules/doctor/doctor.module").then(e => e.DoctorModule)},
   { path:"patient", loadChildren: () => import("./modules/patient/patient.module").then(e => e.PatientModule)},
   { path:"home", component: HomeComponent },
-  { path:"", component: HomeComponent },
-  { path:"**", redirectTo: '' }
+  { path:"", redirectTo: 'home', pathMatch: 'full'},
+  { path:"**", redirectTo: 'home' }
 ];
 
 @NgModule({
